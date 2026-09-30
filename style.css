@@ -1,0 +1,384 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+
+    background:
+        radial-gradient(circle at top left, #163a5f, transparent 35%),
+        radial-gradient(circle at bottom right, #172554, transparent 35%),
+        linear-gradient(135deg, #050816, #0b132b);
+
+    padding: 30px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Header */
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 42px;
+    color: #00f5d4;
+
+    text-shadow:
+        0 0 10px #00f5d4,
+        0 0 30px rgba(0, 245, 212, 0.4);
+}
+
+header p {
+    margin-top: 10px;
+    color: #a8b6c7;
+    font-size: 17px;
+}
+
+
+/* Controls */
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    padding: 20px;
+
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 15px;
+}
+
+.controls label {
+    font-weight: bold;
+}
+
+select {
+    padding: 11px 18px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #16213e;
+    color: white;
+
+    font-size: 15px;
+}
+
+button {
+    padding: 11px 20px;
+
+    border: none;
+    border-radius: 8px;
+
+    color: white;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background: linear-gradient(
+        135deg,
+        #00c6ff,
+        #0072ff
+    );
+
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 198, 255, 0.4);
+}
+
+#resetBtn {
+    background: linear-gradient(
+        135deg,
+        #ff416c,
+        #ff4b2b
+    );
+}
+
+
+/* Status */
+
+#status {
+    text-align: center;
+
+    margin: 18px 0;
+
+    min-height: 25px;
+
+    color: #00f5d4;
+    font-weight: bold;
+}
+
+
+/* Graph */
+
+.graph-container {
+    background: rgba(255,255,255,0.06);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 20px;
+
+    padding: 10px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.3);
+
+    overflow: hidden;
+}
+
+#graph {
+    width: 100%;
+    height: 550px;
+}
+
+
+/* Edges */
+
+.edge {
+    stroke: #53657a;
+    stroke-width: 4;
+
+    transition: 0.4s;
+}
+
+.edge.active {
+    stroke: #00f5d4;
+    stroke-width: 7;
+
+    filter:
+        drop-shadow(0 0 8px #00f5d4);
+}
+
+#graph text:not(.node-name):not(.distance) {
+    fill: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    text-anchor: middle;
+}
+
+
+/* Nodes */
+
+.node {
+    fill: #111c35;
+
+    stroke: #00c6ff;
+    stroke-width: 4;
+
+    transition: 0.5s;
+}
+
+.node.source {
+    fill: #8b5cf6;
+
+    stroke: #d8b4fe;
+
+    filter:
+        drop-shadow(0 0 15px #8b5cf6);
+}
+
+.node.current {
+    fill: #f59e0b;
+
+    stroke: #fde68a;
+
+    filter:
+        drop-shadow(0 0 20px #f59e0b);
+}
+
+.node.visited {
+    fill: #0891b2;
+
+    stroke: #67e8f9;
+
+    filter:
+        drop-shadow(0 0 10px #06b6d4);
+}
+
+.node-name {
+    fill: white;
+
+    font-size: 19px;
+    font-weight: bold;
+
+    text-anchor: middle;
+    dominant-baseline: middle;
+
+    pointer-events: none;
+}
+
+.distance {
+    fill: #b9c9d8;
+
+    font-size: 14px;
+
+    text-anchor: middle;
+}
+
+
+/* Results */
+
+.results {
+    margin-top: 25px;
+
+    padding: 25px;
+
+    background: rgba(255,255,255,0.07);
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.results h2 {
+    color: #00f5d4;
+
+    margin-bottom: 20px;
+}
+
+#resultCards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(145px, 1fr));
+
+    gap: 15px;
+}
+
+.card {
+    padding: 18px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    background: rgba(0,0,0,0.25);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    border-color: #00f5d4;
+
+    box-shadow:
+        0 10px 25px rgba(0,245,212,0.15);
+}
+
+.card .vertex {
+    color: #00f5d4;
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+.card .distance-value {
+    margin: 10px 0;
+
+    font-size: 28px;
+
+    color: white;
+}
+
+.card .path {
+    color: #aab8c7;
+
+    font-size: 13px;
+}
+
+.waiting {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    color: #94a3b8;
+
+    padding: 20px;
+}
+
+
+/* Information */
+
+.info {
+    margin-top: 25px;
+
+    padding: 25px;
+
+    background: rgba(255,255,255,0.07);
+
+    border-radius: 20px;
+
+    line-height: 1.8;
+}
+
+.info h2 {
+    color: #00f5d4;
+
+    margin-bottom: 15px;
+}
+
+.info p {
+    color: #cbd5e1;
+}
+
+.info ol {
+    margin: 15px 0 15px 25px;
+
+    color: #cbd5e1;
+}
+
+.complexity {
+    color: #00f5d4 !important;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 30px;
+    }
+
+    #graph {
+        height: 400px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    button,
+    select {
+        width: 100%;
+    }
+}
